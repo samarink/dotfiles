@@ -1,0 +1,7 @@
+#!/bin/bash
+
+num_updates=$(pacman -Qu | wc -l)
+
+if [ "$num_updates" -gt 0 ]; then
+  notify-send "Updates Available: $num_updates"
+fi

@@ -1,0 +1,89 @@
+#!/bin/sh
+
+# default flags
+alias \
+  cp='cp -ivr' \
+  mv='mv -iv' \
+  rm='rm -Iv' \
+  df='df -h' \
+  bc='bc -ql' \
+  mkd='mkdir -pv' \
+  free='free -wh' \
+
+# abbreviate
+alias \
+  p='sudo pacman' \
+  v='nvim' \
+  j='julia --quiet' \
+  h='history | tac | less' \
+  c='tcc -lcs50 -run' \
+  dc='docker container' \
+  sv='sudo nvim' \
+  sw='termdown' \
+  sdn='shutdown now' \
+  ka='killall' \
+  cs='xclip -selection clipboard' \
+  vs='xclip -o -selection clipboard' \
+  pyt='ipython --colors=Linux --no-banner --no-confirm-exit --classic' \
+  cpwd='pwd | xclip -selection clipboard' \
+
+# abstract
+alias \
+  dropcaches='sudo paccache -rk3; yay -Sc --aur --noconfirm' \
+  dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
+
+# colorize
+alias \
+  ls='ls -hN --color=auto --group-directories-first' \
+  ll='ls -lh --color=auto' \
+  la='ls -lha --color=auto' \
+  diff='colordiff' \
+  ccat="highlight --out-format=ansi" \
+  grep='grep --color=auto' \
+
+# cd
+alias \
+  ..='cd ..' \
+  ...='cd ../..' \
+  .3='cd ../../..' \
+  .4='cd ../../../..' \
+  .5='cd ../../../../..' \
+
+# git
+alias \
+  g='git' \
+  ga='git add' \
+  gb='git branch' \
+  gc='git commit' \
+  gd='git diff' \
+  gl='git log' \
+  gp='git push origin' \
+  gs='git status' \
+  gr='git remote' \
+  gca='git commit -v --amend' \
+  gcb='git checkout -b' \
+  gco='git checkout' \
+  gcl='git clone' \
+  gdc='git diff --cached' \
+  glo='git log --oneline' \
+  glg='git log --oneline --decorate --graph --all' \
+  gpl='git pull' \
+  gpa='git remote | xargs -L1 git push --all' \
+  gunst='git reset HEAD --' \
+
+# django
+alias \
+  pm='python manage.py' \
+
+# npm
+alias \
+  nr='npm run' \
+  nrs='npm run start' \
+  nrb='npm run build' \
+  nrw='npm run webpack' \
+
+# bundle
+alias \
+  be='bundle exec' \
+  ber='bundle exec rails'
+

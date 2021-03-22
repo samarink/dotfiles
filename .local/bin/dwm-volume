@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $BUTTON in
+	1) pactl set-sink-mute @DEFAULT_SINK@ toggle ;;
+  4) pactl set-sink-volume @DEFAULT_SINK@ +5% ;;
+  5) pactl set-sink-volume @DEFAULT_SINK@ -5% ;;
+esac
+
+if [[ "$(pamixer --get-volume-human)" == "muted" ]]; then
+  echo "muted"
+else
+  vol=$(pamixer --get-volume)
+  echo "vol $vol"
+fi
