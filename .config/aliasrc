@@ -30,6 +30,7 @@ alias \
 # abstract
 alias \
   dropcaches='sudo paccache -rk3; yay -Sc --aur --noconfirm' \
+  droporphans='sudo pacman -Qtdq | sudo pacman -Rns -' \
   dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
 
 # colorize
@@ -71,19 +72,7 @@ alias \
   gpa='git remote | xargs -L1 git push --all' \
   gunst='git reset HEAD --' \
 
-# django
-alias \
-  pm='python manage.py' \
-
 # npm
 alias \
   nr='npm run' \
   nrs='npm run start' \
-  nrb='npm run build' \
-  nrw='npm run webpack' \
-
-# bundle
-alias \
-  be='bundle exec' \
-  ber='bundle exec rails'
-
