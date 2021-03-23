@@ -1,7 +1,27 @@
 #!/bin/bash
 
-num_updates=$(pacman -Qu | wc -l)
+seconds=60
+minutes=60
+hours=6
 
-if [ "$num_updates" -gt 0 ]; then
-  notify-send "Updates Available: $num_updates"
-fi
+interval=$(( $seconds * $minutes * $hours ))
+
+notifier() {
+  pac_up=$(pacman -Qu | wc -l)
+  yay_up=$(yay -Qua | wc -l)
+
+  num_updates=$(( $pac_up + $yay_up ))
+
+  if [ $num_updates -gt 0 ]; then
+    notify-send "Updates Available: $num_updates"
+  fi
+}
+
+checker() {
+  while true; do
+    notifier
+    sleep $interval
+  done
+}
+
+checker

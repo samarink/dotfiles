@@ -22,4 +22,5 @@ redshift&          # auto ajust monitor color temp
 flameshot&         # screenshot tool
 copyq&             # clipboard manager
 dunst&             # notifications daemon
-thunar --daemon&    # file manager, fix startup delay
+thunar --daemon&   # file manager, fix startup delay
+updates-notify&    # run updates notifier script
