@@ -332,7 +332,7 @@ nnoremap <Space> @q
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " for unhighlighing the serach (vim tip 80)
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
 
 " copy whole line except newline char
 nnoremap Y 0vg_y
