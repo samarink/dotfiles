@@ -1,35 +1,25 @@
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'honza/vim-snippets'                         " snippets
+Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'                       " syntax highlighting library
-Plug 'neoclide/coc.nvim', {'branch': 'release'}   " intellisense engine
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'itchyny/lightline.vim'                      " status line
-Plug 'bling/vim-bufferline'                       " buffer list
-Plug 'mhinz/vim-startify'                         " custom start screen
-Plug 'tpope/vim-vinegar'                          " split explorer
+Plug 'tpope/vim-vinegar'                          " file explorer
 
-Plug 'tpope/vim-commentary'                       " easy commentary
-Plug 'jiangmiao/auto-pairs'                       " brackets, parens, quotes in pair
-Plug 'tpope/vim-surround'                         " surround
-Plug 'tpope/vim-repeat'                           " enable repeating supported plugins maps
-Plug '907th/vim-auto-save'                        " auto save on leaving insert mode
+Plug '907th/vim-auto-save'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'                           " tap plugins into . command
 Plug 'kana/vim-textobj-user'                      " custom text objects
 Plug 'kana/vim-textobj-entire'                    " entire file as text object
-Plug 'tpope/vim-unimpaired'                       " some mappings
-Plug 'godlygeek/tabular'                          " align text
-Plug 'junegunn/fzf.vim'                           " fzf wrapper
-
+Plug 'tpope/vim-unimpaired'                       " collection of mappings
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
-
-Plug 'valloric/MatchTagAlways'                    " highlight matching html tags
-Plug 'ap/vim-css-color'                           " colors preview
-Plug 'mattn/emmet-vim'                            " emmet for vim
-
-Plug 'easymotion/vim-easymotion'                  " more convinient motion
-Plug 'bkad/CamelCaseMotion'                       " camel case motion
+Plug 'mattn/emmet-vim'
 
 " color schemes
 Plug 'arcticicestudio/nord-vim'
@@ -41,15 +31,9 @@ runtime macros/matchit.vim
 " }}}
 
 " Plugin Settings {{{
-" emmet
-let g:user_emmet_install_global = 0
-autocmd FileType html EmmetInstall
-autocmd FileType css EmmetInstall
-autocmd FileType javascript EmmetInstall
 
 let g:user_emmet_leader_key=',' " press leader twice to trigger emmet
 
-" autosave
 let g:auto_save = 1
 let g:auto_save_silent = 1
 let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
@@ -88,7 +72,6 @@ command! -bang -nargs=* Rg
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
   \   <bang>0)
-
 "}}}
 
 " Airline {{{
@@ -100,7 +83,6 @@ let g:lightline = {
       \ },
       \ 'component': {
       \   'readonly': '%{&readonly?"":""}',
-      \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before . g:bufferline_status_info.current . g:bufferline_status_info.after}',
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
@@ -170,13 +152,12 @@ syntax on                           " enable syntax highlighting
 filetype plugin indent on           " enable automatic filetype set up
 set mouse=a                         " enable mouse support
 set path+=**                        " append working directory to path
-set shell=zsh                       " set shell
 set history=1000                    " increase history limit
 set undolevels=1000                 " increase undos limit
 set foldmethod=marker               " enable folding
-set scrolloff=5                     " keep n lines below cursor position
-set linebreak                       " wrap lines to viewport
-set cursorline                      " hightlight active line
+set scrolloff=15                    " keep n lines below cursor position
+set linebreak                       " wrap lines to viewport width
+set cursorline                      " hightlight current line
 set noswapfile                      " allow switching buffers without writing
 set backspace=indent,eol,start      " sensible backspacing
 set splitright splitbelow           " fix split behaviour
@@ -190,9 +171,8 @@ set fileencodings=utf-8
 " tab behaviour
 set ts=2 sts=2 sw=2 expandtab
 set autoindent
-"set smarttab
 
-" search
+" search behaviour
 set ignorecase
 set smartcase
 set hlsearch
@@ -204,7 +184,7 @@ set lazyredraw
 set redrawtime=10000
 set synmaxcol=180
 
-"required by coc
+" required by coc
 set hidden
 set nobackup
 set nowritebackup
@@ -233,6 +213,13 @@ autocmd BufWritePre * :%s/\s\+$//e
 let mapleader = ","
 nnoremap \ ,
 
+" more convinient mappings
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+nmap <leader>x :xa<CR>
+nmap <Tab> :bnext<CR>
+nmap <S-Tab> :bprevious<CR>
+
 " edit shortcuts
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 map <leader>ew :e %%
@@ -240,7 +227,7 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
-" git
+" git-fugitive
 map <leader>g :G<space>
 map <leader>gw :Gwrite<CR>
 map <leader>gc :G commit -v<CR>
@@ -260,36 +247,13 @@ nmap <leader>b :Buffers<CR>
 
 " format
 noremap <leader>c :Format<CR>
+noremap <leader>af :CocCommand eslint.executeAutofix<CR>
 
-" camel case motion
-map <Space>w <Plug>CamelCaseMotion_w
-map <Space>b <Plug>CamelCaseMotion_b
-map <Space>e <Plug>CamelCaseMotion_e
-map <Space>iw <Plug>CamelCaseMotion_iw
-
-" more convinient mappings
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
-nmap <leader>x :xa<CR>
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
-
+" center the screen
 inoremap zz <Esc>zzi
-
-" quick navigation
-map <Leader> <Plug>(easymotion-prefix) " fix mappings conflict with other plugins
-map <Leader>h <Plug>(easymotion-linebackward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>l <Plug>(easymotion-lineforward)
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
 
 " coc mappings
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -318,12 +282,9 @@ nnoremap <Down> :resize -2<CR>
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 
-" bubble single lines
+" bubble lines up
 nmap <C-Up> [e
 nmap <C-Down> ]e
-
-" replace all
-nnoremap S :%s//<C-r><C-w>/g<CR>
 
 " play a macro at q
 nnoremap <Space> @q
@@ -340,21 +301,9 @@ nnoremap Y 0vg_y
 " keep the cursor in the same place after yank
 vmap y ygv<Esc>
 
-" toggle between single / double quotes
-nmap <leader>' :%s/"\([^"]*\)"/'\1'/g<CR>
-nmap <leader>" :%s/\'\(.*\)\'/\"\1\"<CR>
-
 " keep selection after indent
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
-
-" toggle scrolloff
-nnoremap <Leader>zz :let &scrolloff=50-&scrolloff<CR>
-
-nmap <F5> :source ~/.config/nvim/init.vim<CR> " reload vimrc
-nmap <leader><F5> :edit ~/.config/nvim/init.vim<CR>
-nmap <F9> :PlugInstall<CR>
-nmap <F10> :PlugUpdate<CR>
 "" }}}
 
 " Colorscheme {{{
@@ -381,4 +330,3 @@ highlight Normal        guibg=NONE ctermbg=NONE
 highlight LineNr        guibg=NONE ctermbg=NONE
 highlight SignColumn    guibg=NONE ctermbg=NONE
 " }}}
-
