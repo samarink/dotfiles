@@ -25,9 +25,6 @@ Plug 'mattn/emmet-vim'
 Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
-
-" enable matchit plugin ( % command enhancer )
-runtime macros/matchit.vim
 " }}}
 
 " Plugin Settings {{{
@@ -148,35 +145,21 @@ let g:coc_global_extensions = [
 " }}}
 
 " General {{{
-syntax on                           " enable syntax highlighting
-filetype plugin indent on           " enable automatic filetype set up
 set mouse=a                         " enable mouse support
 set path+=**                        " append working directory to path
-set history=1000                    " increase history limit
 set undolevels=1000                 " increase undos limit
 set foldmethod=marker               " enable folding
-set scrolloff=15                    " keep n lines below cursor position
+set scrolloff=5                     " keep n lines below cursor position
 set linebreak                       " wrap lines to viewport width
 set cursorline                      " hightlight current line
 set noswapfile                      " allow switching buffers without writing
-set backspace=indent,eol,start      " sensible backspacing
 set splitright splitbelow           " fix split behaviour
-set fillchars=vert:\│,eob:\         " hide empty line tildas
 set clipboard=unnamedplus           " copy paste from system clipboard
-
-" set encoding
-set encoding=utf-8
-set fileencodings=utf-8
-
-" tab behaviour
-set ts=2 sts=2 sw=2 expandtab
-set autoindent
+set ts=2 sts=2 sw=2 expandtab       " tab behaviour
 
 " search behaviour
 set ignorecase
 set smartcase
-set hlsearch
-set incsearch
 
 " performance tweaks
 set nocursorcolumn
@@ -214,9 +197,6 @@ let mapleader = ","
 nnoremap \ ,
 
 " more convinient mappings
-nmap <leader>w :w<CR>
-nmap <leader>q :q<CR>
-nmap <leader>x :xa<CR>
 nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 
@@ -242,7 +222,6 @@ map <leader>gp :G push origin<CR>
 " fzf
 nmap <leader>f :Files<CR>
 nmap <C-f> :Rg<CR>
-nmap <C-g> BCommits<CR>
 nmap <leader>b :Buffers<CR>
 
 " format
@@ -271,10 +250,6 @@ nmap k gk
 " move to first/last non whitespace char
 noremap H ^
 noremap L $
-
-" move by paragraph in visual mode
-vmap K {
-vmap J }
 
 " windows resizing shortcuts
 nnoremap <Up> :resize +2<CR>
@@ -307,7 +282,6 @@ vnoremap < <<CR>gv
 "" }}}
 
 " Colorscheme {{{
-set background=dark
 set termguicolors
 
 " colorscheme tweaks
