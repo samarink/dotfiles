@@ -5,6 +5,7 @@ Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'                       " syntax highlighting library
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'bling/vim-bufferline'
 Plug 'itchyny/lightline.vim'                      " status line
 Plug 'tpope/vim-vinegar'                          " file explorer
 
@@ -28,18 +29,15 @@ call plug#end()
 " }}}
 
 " Plugin Settings {{{
-
 let g:user_emmet_leader_key=',' " press leader twice to trigger emmet
 
+" enable autosave plugin
 let g:auto_save = 1
 let g:auto_save_silent = 1
-let g:auto_save_events = ["InsertLeave", "TextChanged", "FocusLost"]
 
 " fzf {{{
-" main window appearance
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Keyword', 'border': 'sharp' } }
 
-" match color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -55,14 +53,14 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" global exports
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+let $FZF_DEFAULT_COMMAND="rg --files --hidden -g !.git/"
 
-" get files
+" helper functions
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
-" grep files based on content
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
@@ -80,6 +78,7 @@ let g:lightline = {
       \ },
       \ 'component': {
       \   'readonly': '%{&readonly?"":""}',
+      \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before . g:bufferline_status_info.current . g:bufferline_status_info.after}',
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
@@ -105,17 +104,11 @@ inoremap <silent><expr> <TAB>
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" navigate snippet placeholders using tab
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 
-" use enter to accept snippet expansion
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-" use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 function! s:check_back_space() abort
@@ -125,10 +118,8 @@ endfunction
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" setup format command
 command! -nargs=0 Format :call CocAction('format')
 
-" list of the extensions
 let g:coc_global_extensions = [
   \'coc-yank',
   \'coc-css',
@@ -139,30 +130,29 @@ let g:coc_global_extensions = [
   \'coc-snippets',
   \'coc-tsserver',
   \'coc-prettier',
-  \'coc-python',
+  \'coc-pyright',
   \]
 " }}}
 " }}}
 
 " General {{{
+set ts=2 sts=2 sw=2 expandtab       " tab behaviour
 set mouse=a                         " enable mouse support
 set path+=**                        " append working directory to path
-set undolevels=1000                 " increase undos limit
 set foldmethod=marker               " enable folding
 set scrolloff=5                     " keep n lines below cursor position
 set linebreak                       " wrap lines to viewport width
 set cursorline                      " hightlight current line
 set noswapfile                      " allow switching buffers without writing
+set undofile                        " save undo history to a file
 set splitright splitbelow           " fix split behaviour
 set clipboard=unnamedplus           " copy paste from system clipboard
-set ts=2 sts=2 sw=2 expandtab       " tab behaviour
 
 " search behaviour
 set ignorecase
 set smartcase
 
 " performance tweaks
-set nocursorcolumn
 set lazyredraw
 set redrawtime=10000
 set synmaxcol=180
