@@ -89,7 +89,6 @@ let g:lightline = {
 " }}}
 
 " Conquer of Completion {{{
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -214,10 +213,6 @@ nmap <leader>f :Files<CR>
 nmap <C-f> :Rg<CR>
 nmap <leader>b :Buffers<CR>
 
-" format
-noremap <leader>c :Format<CR>
-noremap <leader>af :CocCommand eslint.executeAutofix<CR>
-
 " center the screen
 inoremap zz <Esc>zzi
 
@@ -226,6 +221,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <leader>qf  <Plug>(coc-fix-current)
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <leader>rn <Plug>(coc-rename)
+noremap <leader>c :Format<CR>
+noremap <leader>af :CocCommand eslint.executeAutofix<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " move between windows
 map <C-h> <C-w>h
@@ -240,6 +239,9 @@ nmap k gk
 " move to first/last non whitespace char
 noremap H ^
 noremap L $
+
+" switch to previous buffer and back
+nnoremap <bs> <c-^>
 
 " windows resizing shortcuts
 nnoremap <Up> :resize +2<CR>
