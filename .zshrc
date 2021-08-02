@@ -115,12 +115,22 @@ man() {
 # allow global package installation
 export PATH=~/.npm-global/bin:$PATH
 
+export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
+export PATH=/root/.local/share/gem/ruby/3.0.0/bin:$PATH
+
 # enable fasd for easy directory switching
 eval "$(fasd --init auto)"
 
 # fzf default command for vim
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --iglob **/node_modules'
+
+# add asdf to the shell
+. /opt/asdf-vm/asdf.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Fzf completion
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
 #}}}
