@@ -13,7 +13,7 @@ compton --blur-background --blur-method kawase --blur-strength 9 \
   --config ~/.config/compton/compton.conf
 
 # keyboard layout
-setxkbmap -model pc104 -layout us,ru -variant ,, -option altwin:menu_win -option caps:swapescape -option grp:alt_shift_toggle
+setxkbmap -model pc104 -layout us,ru -variant ,, -option caps:swapescape -option grp:win_space_toggle -option altwin:menu_win
 
 xset r rate 300 50 # speed up keyboard rate
 slstatus&          # statusline for dwm
