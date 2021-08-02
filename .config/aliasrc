@@ -17,8 +17,6 @@ alias \
   j='julia --quiet' \
   n='node' \
   py='python' \
-  h='history | tac | less' \
-  c='tcc -lcs50 -run' \
   dc='docker container' \
   sv='sudo nvim' \
   sw='termdown' \
@@ -26,7 +24,6 @@ alias \
   ka='killall' \
   cs='xclip -selection clipboard' \
   vs='xclip -o -selection clipboard' \
-  pyt='ipython --colors=Linux --no-banner --no-confirm-exit --classic' \
   cpwd='pwd | xclip -selection clipboard' \
 
 # abstract
@@ -35,6 +32,8 @@ alias \
   droporphans='sudo pacman -Qtdq | sudo pacman -Rns -' \
   dropall='dropcaches && dropcaches' \
   dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
+  nf='nvim -o `fzf`' \
+  h='history | fzf' \
 
 # colorize
 alias \
@@ -62,7 +61,9 @@ alias \
   gd='git diff' \
   gl='git log' \
   gp='git push' \
-  gs='git status' \
+  gs='git switch' \
+  gsc='git switch -c'
+  gst='git status' \
   gca='git commit -v --amend' \
   gcb='git checkout -b' \
   gco='git checkout' \
