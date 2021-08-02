@@ -62,7 +62,7 @@ alias \
   gl='git log' \
   gp='git push' \
   gs='git switch' \
-  gsc='git switch -c'
+  gsc='git switch -c' \
   gst='git status' \
   gca='git commit -v --amend' \
   gcb='git checkout -b' \
