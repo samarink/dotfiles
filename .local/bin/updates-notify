@@ -2,7 +2,7 @@
 
 seconds=60
 minutes=60
-hours=6
+hours=4
 
 interval=$(( $seconds * $minutes * $hours ))
 
