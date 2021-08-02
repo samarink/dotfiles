@@ -62,6 +62,8 @@ alias \
   gl='git log' \
   gp='git push' \
   gs='git switch' \
+  gr='git restore' \
+  gpl='git pull' \
   gsc='git switch -c' \
   gst='git status' \
   gca='git commit -v --amend' \
