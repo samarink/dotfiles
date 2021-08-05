@@ -146,6 +146,7 @@ set noswapfile                      " allow switching buffers without writing
 set undofile                        " save undo history to a file
 set splitright splitbelow           " fix split behaviour
 set clipboard=unnamedplus           " copy paste from system clipboard
+set spellcapcheck=                  " disable spell capitalization check
 
 " search behaviour
 set ignorecase
@@ -171,6 +172,13 @@ augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+" gitcommit file specific rules
+augroup ft_gitcommit
+  au!
+  au FileType gitcommit let b:auto_save = 0
+  au FileType gitcommit setlocal spell
 augroup END
 
 " disable auto commenting on new lines
