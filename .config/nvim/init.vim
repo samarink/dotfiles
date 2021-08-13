@@ -17,6 +17,8 @@ Plug 'tpope/vim-repeat'                           " tap plugins into . command
 Plug 'kana/vim-textobj-user'                      " custom text objects
 Plug 'kana/vim-textobj-entire'                    " entire file as text object
 Plug 'tpope/vim-unimpaired'                       " collection of mappings
+Plug 'nelstrom/vim-visual-star-search'            " modify * to also work with visual selections
+
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
