@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # set up dual monitor
-xrandr --output HDMI-0 --primary --mode 1920x1080 --pos 0x0 \
-       --output VGA-0 --mode 1280x1024 --pos 1920x0 --right-of HDMI-0
+xrandr --output VGA-0 --primary --mode 1920x1080 --pos 0x0 \
+       --output HDMI-0 --mode 1920x1080 --pos 1920x0 --right-of VGA-0
 
 # wallpaper
 feh --bg-scale ~/.config/wallpaper.png &
@@ -24,3 +24,4 @@ copyq&             # clipboard manager
 dunst&             # notifications daemon
 thunar --daemon&   # file manager, fix startup delay
 updates-notify&    # run updates notifier script
+slock&
