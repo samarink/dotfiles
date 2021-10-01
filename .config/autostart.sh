@@ -4,6 +4,9 @@
 xrandr --output VGA-0 --primary --mode 1920x1080 --pos 0x0 \
        --output HDMI-0 --mode 1920x1080 --pos 1920x0 --right-of VGA-0
 
+# center mouse cursor on main screen
+xdotool mousemove --screen VGA-0 960 540
+
 # wallpaper
 feh --bg-scale ~/.config/wallpaper.png &
 
