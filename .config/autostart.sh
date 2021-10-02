@@ -11,9 +11,7 @@ xdotool mousemove --screen VGA-0 960 540
 feh --bg-scale ~/.config/wallpaper.png &
 
 # compositor (tryone fork)
-compton --blur-background --blur-method kawase --blur-strength 9 \
-  --opacity-rule 85:'class_g="kitty"' --backend glx -b \
-  --config ~/.config/compton/compton.conf
+picom --experimental-backends -b
 
 # keyboard layout
 setxkbmap -model pc104 -layout us,ru -variant ,, -option caps:swapescape -option grp:win_space_toggle -option altwin:menu_win
@@ -27,4 +25,4 @@ copyq&             # clipboard manager
 dunst&             # notifications daemon
 thunar --daemon&   # file manager, fix startup delay
 updates-notify&    # run updates notifier script
-slock&
+# slock&
