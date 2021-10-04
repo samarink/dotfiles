@@ -30,8 +30,8 @@ alias \
 alias \
   dropcaches='sudo paccache -rk3; yay -Sc --aur --noconfirm' \
   droporphans='sudo pacman -Qtdq | sudo pacman -Rns -' \
-  dropall='dropcaches && dropcaches' \
-  dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
+  dropall='dropcaches && droporhans' \
+  dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
   nf='nvim -o `fzf`' \
   h='history | fzf' \
 
