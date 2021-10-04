@@ -32,6 +32,13 @@ if [ -f ~/.config/aliasrc ]; then
 fi
 
 # History in cache directory:
+
+# create a history file if it does not exist already
+if [[ ! -e ~/.cache/zsh ]]; then
+    mkdir -p ~/.cache/zsh
+    touch ~/.cache/zsh/history
+fi
+
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
