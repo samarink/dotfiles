@@ -10,19 +10,18 @@ xdotool mousemove --screen VGA-0 960 540
 # wallpaper
 feh --bg-scale ~/.config/wallpaper.png &
 
-# compositor (tryone fork)
-picom --experimental-backends -b
 
 # keyboard layout
 setxkbmap -model pc104 -layout us,ru -variant ,, -option caps:swapescape -option grp:win_space_toggle -option altwin:menu_win
 
 xset r rate 300 50 # speed up keyboard rate
-slstatus&          # statusline for dwm
-imwheel -f &       # mouse scroll speed fix
-redshift&          # auto ajust monitor color temp
-flameshot&         # screenshot tool
-copyq&             # clipboard manager
-dunst&             # notifications daemon
-thunar --daemon&   # file manager, fix startup delay
-updates-notify&    # run updates notifier script
-# slock&
+
+slstatus&                         # statusline for dwm
+imwheel -f &                      # mouse scroll speed fix
+redshift&                         # auto ajust monitor color temp
+flameshot&                        # screenshot tool
+copyq&                            # clipboard manager
+dunst&                            # notifications daemon
+thunar --daemon&                  # file manager, fix startup delay
+updates-notify&                   # run updates notifier script
+picom --experimental-backends -b  # compositor
