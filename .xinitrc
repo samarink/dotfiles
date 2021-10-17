@@ -3,7 +3,6 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # default programs
 export EDITOR="nvim"
-export BROWSER="brave"
 export TERMINAL="kitty"
 export READER="zathura"
 
