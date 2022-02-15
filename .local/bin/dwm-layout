@@ -1,5 +1,0 @@
-#!/bin/bash
-# depends on: https://github.com/nonpop/xkblayout-state
-
-xkblayout-state print "%s" | sed r/%//
-#echo "en"

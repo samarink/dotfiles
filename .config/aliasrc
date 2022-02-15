@@ -4,49 +4,33 @@
 alias \
   cp='cp -ivr' \
   mv='mv -iv' \
-  rm='rm -Iv' \
+  rm='rm -v' \
   df='df -h' \
   bc='bc -ql' \
+  ls='ls -h --color=auto' \
+  ll='ls -lh --color=auto' \
+  la='ls -lha --color=auto' \
   mkd='mkdir -pv' \
-  free='free -wh' \
 
 # abbreviate
 alias \
-  p='sudo pacman' \
   v='nvim' \
   j='julia --quiet' \
   n='node' \
   py='python' \
-  dc='docker container' \
   sv='sudo nvim' \
-  sw='termdown' \
   sdn='shutdown now' \
   ka='killall' \
-  cs='xclip -selection clipboard' \
-  vs='xclip -o -selection clipboard' \
-  cpwd='pwd | xclip -selection clipboard' \
 
 # abstract
 alias \
-  dropcaches='sudo paccache -rk3; yay -Sc --aur --noconfirm' \
-  droporphans='sudo pacman -Qtdq | sudo pacman -Rns -' \
-  dropall='dropcaches && droporhans' \
   dots='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME' \
   nf='nvim -o `fzf`' \
   h='history | fzf' \
-  upd='export TMPFILE="$(mktemp)"; \
-      sudo true; \
-      rate-mirrors --save=$TMPFILE arch --max-delay=21600 \
-        && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist-backup \
-        && sudo mv $TMPFILE /etc/pacman.d/mirrorlist \
-        && dropcaches \
-        && yay -Syyu --noconfirm' \
+  bubu='brew update && brew upgrade' \
 
 # colorize
 alias \
-  ls='ls -hN --color=auto --group-directories-first' \
-  ll='ls -lh --color=auto' \
-  la='ls -lha --color=auto' \
   diff='colordiff' \
   ccat="highlight --out-format=ansi" \
   grep='grep --color=auto' \

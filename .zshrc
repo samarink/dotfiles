@@ -98,7 +98,7 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 
 # accept history completion suggestion
-bindkey '^ ' autosuggest-accept
+bindkey '^j' autosuggest-accept
 
 # mkdir and cd into it
 mcd () {
@@ -119,11 +119,14 @@ man() {
 
 # Exports, evals etc. {{{
 
+# add brew to path
+export PATH=/opt/homebrew/bin:$PATH
+
+# add bin to path for user scripts
+export PATH="$PATH:$HOME/.local/bin"
+
 # allow global package installation
 export PATH=~/.npm-global/bin:$PATH
-
-export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
-export PATH=/root/.local/share/gem/ruby/3.0.0/bin:$PATH
 
 # enable fasd for easy directory switching
 eval "$(fasd --init auto)"
@@ -131,13 +134,7 @@ eval "$(fasd --init auto)"
 # fzf default command for vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --iglob **/node_modules'
 
-# add asdf to the shell
-. /opt/asdf-vm/asdf.sh
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Fzf completion
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
 #}}}
