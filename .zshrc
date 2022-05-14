@@ -119,6 +119,13 @@ man() {
 
 # Exports, evals etc. {{{
 
+# xdg config
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_RUNTIME_DIR=/run/user/$UID
+
 # add brew to path
 export PATH=/opt/homebrew/bin:$PATH
 
@@ -133,6 +140,13 @@ eval "$(fasd --init auto)"
 
 # fzf default command for vim
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --iglob **/node_modules'
+
+# init rbenv
+eval "$(rbenv init - zsh)"
+
+# add gopath
+export GOPATH="$XDG_DATA_HOME"/go
+export PATH="$GOPATH/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
