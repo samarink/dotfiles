@@ -19,6 +19,7 @@ Plug 'kana/vim-textobj-entire'                    " entire file as text object
 Plug 'tpope/vim-unimpaired'                       " collection of mappings
 Plug 'nelstrom/vim-visual-star-search'            " modify * to also work with visual selections
 
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
@@ -132,6 +133,8 @@ let g:coc_global_extensions = [
   \'coc-tsserver',
   \'coc-prettier',
   \'coc-pyright',
+  \'coc-solargraph',
+  \'coc-go'
   \]
 " }}}
 " }}}
@@ -149,6 +152,7 @@ set undofile                        " save undo history to a file
 set splitright splitbelow           " fix split behaviour
 set clipboard=unnamedplus           " copy paste from system clipboard
 set spellcapcheck=                  " disable spell capitalization check
+set rtp+=/usr/local/opt/fzf
 
 " search behaviour
 set ignorecase
@@ -266,8 +270,8 @@ nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
 
 " bubble lines up
-nmap <C-Up> [e
-nmap <C-Down> ]e
+nmap <M-Up> [e
+nmap <M-Down> ]e
 
 " play a macro at q
 nnoremap <Space> @q
