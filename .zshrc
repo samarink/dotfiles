@@ -139,7 +139,7 @@ export PATH=~/.npm-global/bin:$PATH
 eval "$(fasd --init auto)"
 
 # fzf default command for vim
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden --iglob **/node_modules'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --ignore-case --hidden --iglob **/node_modules'
 
 # init rbenv
 eval "$(rbenv init - zsh)"
