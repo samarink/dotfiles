@@ -43,67 +43,67 @@ let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffse
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+\ 'bg':      ['bg', 'Normal'],
+\ 'hl':      ['fg', 'Comment'],
+\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+\ 'hl+':     ['fg', 'Statement'],
+\ 'info':    ['fg', 'PreProc'],
+\ 'border':  ['fg', 'Ignore'],
+\ 'prompt':  ['fg', 'Conditional'],
+\ 'pointer': ['fg', 'Exception'],
+\ 'marker':  ['fg', 'Keyword'],
+\ 'spinner': ['fg', 'Label'],
+\ 'header':  ['fg', 'Comment'] }
 
 " global exports
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline -i'
 let $FZF_DEFAULT_COMMAND="rg --files --hidden -g !.git/"
 
 " helper functions
 command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
+\ call fzf#vim#grep(
+\   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+\   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+\           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+\   <bang>0)
 "}}}
 
 " Airline {{{
 set laststatus=2
 let g:lightline = {
-      \ 'colorscheme': 'nord',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&readonly?"":""}',
-      \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before . g:bufferline_status_info.current . g:bufferline_status_info.after}',
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ 'separator':    { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '', 'right': '' },
+    \ 'colorscheme': 'nord',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ] ],
+    \ },
+    \ 'component': {
+    \   'readonly': '%{&readonly?"":""}',
+    \   'bufferline': '%{bufferline#refresh_status()}%{g:bufferline_status_info.before . g:bufferline_status_info.current . g:bufferline_status_info.after}',
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'FugitiveHead'
+    \ },
+    \ 'separator':    { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' },
 \ }
 " }}}
 
 " Conquer of Completion {{{
 function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+if (index(['vim','help'], &filetype) >= 0)
+  execute 'h '.expand('<cword>')
+else
+  call CocAction('doHover')
+endif
 endfunction
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 let g:coc_snippet_next = '<Tab>'
@@ -114,8 +114,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -123,19 +123,18 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 command! -nargs=0 Format :call CocAction('format')
 
 let g:coc_global_extensions = [
-  \'coc-yank',
-  \'coc-css',
-  \'coc-html',
-  \'coc-eslint',
-  \'coc-emmet',
-  \'coc-json',
-  \'coc-snippets',
-  \'coc-tsserver',
-  \'coc-prettier',
-  \'coc-pyright',
-  \'coc-solargraph',
-  \'coc-go'
-  \]
+\'coc-css',
+\'coc-html',
+\'coc-eslint',
+\'coc-emmet',
+\'coc-json',
+\'coc-snippets',
+\'coc-tsserver',
+\'coc-prettier',
+\'coc-pyright',
+\'coc-solargraph',
+\'coc-go'
+\]
 " }}}
 " }}}
 
@@ -198,6 +197,9 @@ augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
 augroup END
+
+" Source the vimrc file after saving it
+autocmd bufwritepost .vimrc source $MYVIMRC
 " }}}
 
 " Key Mappings {{{
@@ -280,7 +282,8 @@ nnoremap <Space> @q
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " for unhighlighing the serach (vim tip 80)
-nnoremap <silent> <M-l> :<C-u>nohlsearch<CR><C-l>
+nmap <silent> <C-c> <C-c>:nohlsearch<CR>:match<CR>:diffupdate<CR>
+noremap <silent> <c-_> :let @/ = ""<CR>
 
 " copy whole line except newline char
 nnoremap Y 0vg_y
@@ -291,6 +294,12 @@ vmap y ygv<Esc>
 " keep selection after indent
 vnoremap > ><CR>gv
 vnoremap < <<CR>gv
+
+" edit vimrc
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" close current buffer
+nmap <leader>x :bd<CR>
 "" }}}
 
 " Colorscheme {{{

@@ -117,15 +117,7 @@ man() {
 }
 #}}}
 
-# Exports, evals etc. {{{
-
-# xdg config
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_RUNTIME_DIR=/run/user/$UID
-
+# -i Exports, evals etc. {{{
 # add brew to path
 export PATH=/opt/homebrew/bin:$PATH
 
@@ -138,9 +130,6 @@ export PATH=~/.npm-global/bin:$PATH
 # enable fasd for easy directory switching
 eval "$(fasd --init auto)"
 
-# fzf default command for vim
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --ignore-case --hidden --iglob **/node_modules'
-
 # init rbenv
 eval "$(rbenv init - zsh)"
 
@@ -148,7 +137,12 @@ eval "$(rbenv init - zsh)"
 export GOPATH="$XDG_DATA_HOME"/go
 export PATH="$GOPATH/bin:$PATH"
 
+# nvm
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 #}}}
+
