@@ -101,11 +101,13 @@ endif
 endfunction
 
 inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 
@@ -300,6 +302,11 @@ nmap <leader>v :tabedit $MYVIMRC<CR>
 
 " close current buffer
 nmap <leader>x :bd<CR>
+
+" don't override buffer on visual put
+vnoremap p "_dP
+
+nmap <leader>m :Gvdiffsplit!<CR>
 "" }}}
 
 " Colorscheme {{{

@@ -115,6 +115,11 @@ man() {
     LESS_TERMCAP_us=$'\e[00;35m' \
     command man "$@"
 }
+
+# git switch or create
+gs() {
+  git switch $1 2>/dev/null || git switch -c $1
+}
 #}}}
 
 # -i Exports, evals etc. {{{
@@ -145,4 +150,3 @@ export NVM_DIR="$HOME/.config/nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #}}}
-

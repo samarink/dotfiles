@@ -53,13 +53,10 @@ alias \
   gd='git diff' \
   gl='git log' \
   gp='git push' \
-  gs='git switch' \
   gr='git restore' \
   gpl='git pull' \
-  gsc='git switch -c' \
   gst='git status' \
   gca='git commit -v --amend' \
-  gcb='git checkout -b' \
   gco='git checkout' \
   gdc='git diff --cached' \
   glo='git log --oneline' \
