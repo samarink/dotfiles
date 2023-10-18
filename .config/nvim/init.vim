@@ -16,6 +16,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'                           " tap plugins into . command
 Plug 'kana/vim-textobj-user'                      " custom text objects
 Plug 'kana/vim-textobj-entire'                    " entire file as text object
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-unimpaired'                       " collection of mappings
 Plug 'nelstrom/vim-visual-star-search'            " modify * to also work with visual selections
 
@@ -24,6 +25,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
 Plug 'mattn/emmet-vim'
+
+Plug 'tpope/vim-endwise'
+Plug 'AndrewRadev/splitjoin.vim'
 
 " color schemes
 Plug 'arcticicestudio/nord-vim'
@@ -227,13 +231,14 @@ map <leader>et :tabe %%
 map <leader>g :G<space>
 map <leader>gw :Gwrite<CR>
 map <leader>gc :G commit -v<CR>
-map <leader>gs :Gstatus<CR>
+map <leader>gs :G switch NC-
 map <leader>gd :Gdiff<CR>
 map <leader>gr :Gread<CR>
 map <leader>gx :Gremove<CR>
 map <leader>gm :Gmove %%<space>
 map <leader>ga :G commit --amend -v<CR>
 map <leader>gp :G push origin<CR>
+map <leader>gb :G blame<CR>
 
 " fzf
 nmap <leader>f :Files<CR>
@@ -309,7 +314,13 @@ nmap <leader>x :bd<CR>
 " don't override buffer on visual put
 vnoremap p "_dP
 
+" resolve merge conflict
 nmap <leader>m :Gvdiffsplit!<CR>
+
+" close all windows
+nnoremap <leader>z :wqa<CR>
+
+nmap <leader>d obinding.pry<Esc>
 "" }}}
 
 " Colorscheme {{{

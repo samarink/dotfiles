@@ -29,6 +29,7 @@ alias \
   vf='nvim -o `fzf`' \
   h='history | fzf' \
   bubu='brew update && brew upgrade' \
+  upd='sudo apt update && sudo apt upgrade -y'
 
 # colorize
 alias \
@@ -54,6 +55,7 @@ alias \
   gl='git log' \
   gp='git push' \
   gr='git restore' \
+  gm='git merge --no-ff --no-edit' \
   gpl='git pull' \
   gst='git status' \
   gca='git commit -v --amend' \
@@ -61,8 +63,14 @@ alias \
   gdc='git diff --cached' \
   glo='git log --oneline' \
   glg='git log --oneline --decorate --graph --all' \
+  gpoh='git push origin HEAD' \
 
 # npm
 alias \
   nr='npm run' \
   nrs='npm run start' \
+
+# bundle
+alias \
+  b='bundle' \
+  be='bundle exec' \
