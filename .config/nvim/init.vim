@@ -25,8 +25,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
 Plug 'mattn/emmet-vim'
-
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-rails'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " color schemes
@@ -234,7 +233,7 @@ map <leader>gc :G commit -v<CR>
 map <leader>gs :G switch NC-
 map <leader>gd :Gdiff<CR>
 map <leader>gr :Gread<CR>
-map <leader>gx :Gremove<CR>
+map <leader>gx :GRemove<CR>
 map <leader>gm :Gmove %%<space>
 map <leader>ga :G commit --amend -v<CR>
 map <leader>gp :G push origin<CR>
