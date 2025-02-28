@@ -22,6 +22,7 @@ alias \
   sv='sudo nvim' \
   sdn='shutdown now' \
   ka='killall' \
+  dc='docker-compose'
 
 # abstract
 alias \

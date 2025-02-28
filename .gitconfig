@@ -1,0 +1,36 @@
+[user]
+	name = Konstantin Samarin
+	email = konstsamari@gmail.com
+[color]
+	ui = true
+[core]
+	editor = nvim
+	excludesfile = /Users/nsk/.gitignore
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[help]
+	autocorrect = prompt
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[init]
+	defaultBranch = main
+[push]
+	autoSetupRemote = true
+	followTags = true
+[fetch]
+	pruneTags = true
+	all = true
+	prune = true
+[commit]
+	verbose = true
+[rerere]
+	autoupdate = true
+	enabled = true

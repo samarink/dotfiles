@@ -98,7 +98,7 @@ lfcd () {
 bindkey -s '^o' 'lfcd\n'
 
 # accept history completion suggestion
-bindkey '^j' autosuggest-accept
+bindkey '^f' autosuggest-accept
 
 # mkdir and cd into it
 mcd () {
@@ -117,10 +117,10 @@ man() {
 }
 
 # git switch or create
-gs() {
-  git switch $1 2>/dev/null || git switch -c $1
-}
-#}}}
+ gs() {
+   git switch $1 2>/dev/null || git switch -c $1
+ }
+}}}
 
 # -i Exports, evals etc. {{{
 # add brew to path
@@ -132,15 +132,15 @@ export PATH="$PATH:$HOME/.local/bin"
 # allow global package installation
 export PATH=~/.npm-global/bin:$PATH
 
+# hide go from home directory
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
+
 # enable fasd for easy directory switching
 eval "$(fasd --init auto)"
 
 # init rbenv
 eval "$(rbenv init - zsh)"
-
-# add gopath
-export GOPATH="$XDG_DATA_HOME"/go
-export PATH="$GOPATH/bin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.config/nvm"
@@ -150,3 +150,12 @@ export NVM_DIR="$HOME/.config/nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #}}}
+
+  function Resume {
+    fg
+    zle push-input
+    BUFFER=""
+    zle accept-line
+  }
+  zle -N Resume
+  bindkey "^Z" Resume

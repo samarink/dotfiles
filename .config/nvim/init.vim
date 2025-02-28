@@ -23,7 +23,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
-Plug 'mattn/emmet-vim'
+Plug 'charlespascoe/vim-go-syntax'
+
 
 " color schemes
 Plug 'arcticicestudio/nord-vim'
@@ -37,6 +38,7 @@ let g:user_emmet_leader_key=',' " press leader twice to trigger emmet
 " enable autosave plugin
 let g:auto_save = 1
 let g:auto_save_silent = 1
+
 
 " fzf {{{
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Keyword', 'border': 'sharp' } }
@@ -128,23 +130,17 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 command! -nargs=0 Format :call CocAction('format')
 
 let g:coc_global_extensions = [
-\'coc-css',
-\'coc-html',
-\'coc-eslint',
-\'coc-emmet',
 \'coc-json',
 \'coc-snippets',
-\'coc-tsserver',
-\'coc-prettier',
-\'coc-pyright',
 \'coc-solargraph',
-\'coc-go'
+\'coc-go',
+\'coc-clangd',
 \]
 " }}}
 " }}}
 
 " General {{{
-set ts=2 sts=2 sw=2 expandtab       " tab behaviour
+set ts=4 sts=4 sw=4 expandtab       " tab behaviour
 set mouse=a                         " enable mouse support
 set path+=**                        " append working directory to path
 set foldmethod=marker               " enable folding
@@ -222,6 +218,9 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 
 " git-fugitive
 map <leader>g :G<space>
@@ -234,6 +233,9 @@ map <leader>gx :Gremove<CR>
 map <leader>gm :Gmove %%<space>
 map <leader>ga :G commit --amend -v<CR>
 map <leader>gp :G push origin<CR>
+map <leader>gb :G blame<CR>
+
+map <leader>ge oif err != nil {}<ESC>Li<CR>
 
 " fzf
 nmap <leader>f :Files<CR>
@@ -252,6 +254,12 @@ nmap <leader>rn <Plug>(coc-rename)
 noremap <leader>c :Format<CR>
 noremap <leader>af :CocCommand eslint.executeAutofix<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+nmap <leader>i :CocCommand editor.action.organizeImport<CR>
 
 " move between windows
 map <C-h> <C-w>h
