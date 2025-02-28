@@ -56,12 +56,14 @@ alias \
   gp='git push' \
   gr='git restore' \
   gpl='git pull' \
+  gm='git merge --no-ff --no-edit' \
   gst='git status' \
   gca='git commit -v --amend' \
   gco='git checkout' \
   gdc='git diff --cached' \
   glo='git log --oneline' \
   glg='git log --oneline --decorate --graph --all' \
+  gpoh='git push origin HEAD' \
 
 # npm
 alias \

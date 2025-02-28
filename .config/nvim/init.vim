@@ -25,6 +25,10 @@ Plug 'tpope/vim-fugitive'                         " git wrapper
 Plug 'airblade/vim-gitgutter'                     " git diff in the gutter
 Plug 'charlespascoe/vim-go-syntax'
 
+Plug 'tpope/vim-rails'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'AndrewRadev/splitjoin.vim'
+
 
 " color schemes
 Plug 'arcticicestudio/nord-vim'
@@ -226,16 +230,17 @@ nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
 map <leader>g :G<space>
 map <leader>gw :Gwrite<CR>
 map <leader>gc :G commit -v<CR>
-map <leader>gs :Gstatus<CR>
+map <leader>gs :G switch<space>
 map <leader>gd :Gdiff<CR>
 map <leader>gr :Gread<CR>
-map <leader>gx :Gremove<CR>
+map <leader>gx :GRemove<CR>
 map <leader>gm :Gmove %%<space>
 map <leader>ga :G commit --amend -v<CR>
 map <leader>gp :G push origin<CR>
 map <leader>gb :G blame<CR>
 
 map <leader>ge oif err != nil {}<ESC>Li<CR>
+nmap <leader>d obinding.pry<Esc>
 
 " fzf
 nmap <leader>f :Files<CR>

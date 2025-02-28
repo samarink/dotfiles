@@ -18,6 +18,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     vi-mode
+    git
 )
 
 # load plugins
@@ -117,10 +118,21 @@ man() {
 }
 
 # git switch or create
- gs() {
+gs() {
    git switch $1 2>/dev/null || git switch -c $1
  }
-}}}
+
+# ctrl z back
+function Resume {
+    fg
+    zle push-input
+    BUFFER=""
+    zle accept-line
+}
+
+zle -N Resume
+bindkey "^Z" Resume
+#}}}
 
 # -i Exports, evals etc. {{{
 # add brew to path
@@ -150,12 +162,3 @@ export NVM_DIR="$HOME/.config/nvm"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #}}}
-
-  function Resume {
-    fg
-    zle push-input
-    BUFFER=""
-    zle accept-line
-  }
-  zle -N Resume
-  bindkey "^Z" Resume
